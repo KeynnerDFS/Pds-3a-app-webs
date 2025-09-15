@@ -4,9 +4,18 @@
 
 @using AppExemplo.Models;
 @inject ProdutoDAO produtoDao;
+@inject NavigationManager Navigation;
+
 <PageTitle>Produto - Novo</PageTitle>
 
 <h1>Novo Produto</h1> <br />
+
+@if (erro!= null) 
+{
+ <div class="alert alert-danger">
+    @erro
+ </div>
+}
 
 <div class="row">
 
@@ -22,13 +31,13 @@
             <div class="form-grounp mb-4">
 
                 <label>Quantidade</label>
-                <input @bind="_novoProduto.Quantidade" type="text" class="form-control" name="Quantidade" placeholder="Informe a quantide do produto" />
+                <input @bind="_novoProduto.Quantidade" type="text" class="form-control" name="Quantidade"  />
             </div>
 
             <div class="form-grounp mb-4">
 
                 <label>Preço</label>
-                <input @bind="_novoProduto.Preco" type="text" class="form-control" name="Preço" placeholder="Informe o Preço do produto" />
+                <input @bind="_novoProduto.Preco" type="text" class="form-control" name="Preço"  />
             </div>
 
             <div class="form-grounp mb-4">
@@ -38,6 +47,7 @@
             </div>
 
             <button  @onclick="Salvar" class="btn btn-primary">Salvar</button>
+            
         </form>
 
     </div>
@@ -46,10 +56,23 @@
 
 
 @code {
+    private string? erro = null;
+
     private Produto _novoProduto = new();
+
+    
+
 
     private void Salvar()
     {
-        produtoDao.inserir(_novoProduto);
+        try
+        {
+            produtoDao.inserir(_novoProduto);
+
+            Navigation.NavigateTo("/produtos");
+        } catch (Exception ex)
+        {
+            erro = ex.Message; 
+        }
     }
 }

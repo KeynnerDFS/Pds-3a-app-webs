@@ -26,7 +26,7 @@ namespace AppExemplo.Models
                     {
                         Id = reader.GetInt32("id_pro"),
                         Nome = reader.GetString("nome_pro"),
-                        Descricao = reader.GetString("descricao_pro"),
+                        Descricao = reader.IsDBNull(reader.GetOrdinal("descricao_pro")) ? "": reader.GetString("descricao_pro"),
                         Quantidade = reader.GetInt32("quantidade_pro"),
                         Preco = reader.GetInt32("preco_pro")
                     };
