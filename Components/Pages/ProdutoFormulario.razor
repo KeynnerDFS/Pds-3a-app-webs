@@ -1,5 +1,6 @@
 ﻿@page "/produtos/novo"
-
+@using AppExemplo.Models;
+@inject ProdutoDAO produtoDao;
 <PageTitle>Produto - Novo</PageTitle>
 
 <h1>Novo Produto</h1>
@@ -9,31 +10,31 @@
     <div class="col">
 
         <form>
-            <div class="form-grounp">
+            <div class="form-grounp mb-4">
 
                 <label>Nome</label>
-                <input type="text" class="form-control" name="nome" placeholder="Informe o nome do produto" />
+                <input @bind="_novoProduto.Nome" type="text" class="form-control" name="nome" placeholder="Informe o nome do produto" />
             </div>
 
-             <div class="form-grounp">
+            <div class="form-grounp mb-4">
 
                 <label>Quantidade</label>
-                <input type="text" class="form-control"  name="Quantidade" placeholder="Informe a quantide do produto" />
+                <input @bind="_novoProduto.Quantidade" type="text" class="form-control" name="Quantidade" placeholder="Informe a quantide do produto" />
             </div>
 
-            <div class="form-grounp">
+            <div class="form-grounp mb-4">
 
                 <label>Preço</label>
-                <input type="text" class="form-control" name="Preço" placeholder="Informe o Preço do produto" />
+                <input @bind="_novoProduto.Preco" type="text" class="form-control" name="Preço" placeholder="Informe o Preço do produto" />
             </div>
 
-            <div class="form-grounp">
+            <div class="form-grounp mb-4">
 
                 <label>Descrição</label>
-                <input type="text" class="form-control" name="Descrição" rows="5" />
+                <input @bind="_novoProduto.Descricao" type="text" class="form-control" name="Descrição" rows="5" />
             </div>
 
-            <button class="btn btn-primary">Salvar</button>
+            <button @onclick="Salvar" class="btn btn-primary">Salvar</button>
         </form>
 
     </div>
@@ -42,5 +43,10 @@
 
 
 @code {
+    private Produto _novoProduto = new();
 
+    private void Salvar()
+    {
+        produtoDao.inserir(_novoProduto);
+    }
 }
