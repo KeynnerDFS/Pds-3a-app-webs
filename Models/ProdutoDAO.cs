@@ -47,7 +47,7 @@ namespace AppExemplo.Models
         {
             try
             {
-                var comando = _conexao.CreateCommand("INSERT INTO PRODUTO VALUES (null, @_nome, @_descricao, @_qtd, @_preco) ");
+                var comando = _conexao.CreateCommand("INSERT INTO PRODUTO VALUES (null, null, @_nome, @_descricao, @_qtd, @_preco) ");
                 comando.Parameters.AddWithValue("@_nome", produto.Nome);
                 comando.Parameters.AddWithValue("@_descricao", produto.Descricao);
                 comando.Parameters.AddWithValue("@_qtd", produto.Quantidade);

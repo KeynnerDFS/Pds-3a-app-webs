@@ -1,9 +1,12 @@
 ﻿@page "/produtos/novo"
+@rendermode InteractiveServer
+
+
 @using AppExemplo.Models;
 @inject ProdutoDAO produtoDao;
 <PageTitle>Produto - Novo</PageTitle>
 
-<h1>Novo Produto</h1>
+<h1>Novo Produto</h1> <br />
 
 <div class="row">
 
@@ -34,7 +37,7 @@
                 <input @bind="_novoProduto.Descricao" type="text" class="form-control" name="Descrição" rows="5" />
             </div>
 
-            <button @onclick="Salvar" class="btn btn-primary">Salvar</button>
+            <button  @onclick="Salvar" class="btn btn-primary">Salvar</button>
         </form>
 
     </div>
